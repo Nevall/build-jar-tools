@@ -1,0 +1,28 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+apply plugin: 'com.novoda.bintray-release'
+
+dependencies {
+    compile gradleApi()
+    compile localGroovy()
+    compile 'net.sf.proguard:proguard-gradle:5.3.3'
+    compile 'com.android.tools.build:gradle:2.2.0'
+}
+
+uploadArchives {
+    repositories.mavenDeployer {
+        repository(url: LOCAL_REPO_URL)
+        pom.groupId = PROJ_GROUP
+        pom.artifactId = PROJ_ARTIFACTID
+        pom.version = PROJ_VERSION
+    }
+}
+
+publish {
+    userOrg = 'near-2009'
+    groupId = 'com.tools'
+    artifactId = 'build-jar-tools'
+    publishVersion = '1.0.0'
+    desc = 'This is a build jar tools library'
+    website = 'https://github.com/Nevall/build-jar-tools'
+}

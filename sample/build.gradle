@@ -1,0 +1,46 @@
+apply plugin: 'com.android.library'
+apply plugin: 'library.jar.tools'
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
+
+buildJar {
+    //输出目录
+    outputFileDir = project.buildDir.path + "/outputs/jar"
+    //Jar包名
+    outputFileName = project.name
+    //版本号
+    versionCode = "1.0.0"
+    //混淆配置
+    proguardConfigFile = "proguard-rules.pro"
+    //是否需要默认的混淆配置proguard-android.txt
+    needDefaultProguard = false
+}
