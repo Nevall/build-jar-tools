@@ -1,1 +1,1 @@
-include ':libs', 'build-jar-tools'
+include ':sample', 'build-jar-tools'
